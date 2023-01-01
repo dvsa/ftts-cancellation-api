@@ -1,0 +1,19 @@
+{
+        "type":"array",
+        "minItems":1,
+        "items":{
+          "type":"object",
+          "additionalProperties":false,
+          "required":[
+            "bookingProductReference"
+          ],
+          "properties":{
+            "bookingProductReference":{
+              "type":"string",
+              "minLength":16,
+              "maxLength":16
+            }
+          }
+        },
+        "$schema":"http://json-schema.org/draft-07/schema#"
+}

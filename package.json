@@ -1,0 +1,83 @@
+{
+  "name": "ftts-cancellation-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cancellation api",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rimraf dist",
+    "coverage-ci": "jest --coverage --reporters=jest-junit --reporters=jest-standard-reporter --ci",
+    "copy:xmls": "copyfiles -u 1 src/**/*.xml dist",
+    "copy-config": "cp local.settings.example.json local.settings.json",
+    "func:start": "npm run prestart && func start -p 7072 --verbose",
+    "lint": "eslint --ext .js,.ts .",
+    "lint:fix": "eslint --fix --ext .js,.ts .",
+    "lint:report": "eslint --ext .js,.ts . -f json -o lint/report.json",
+    "prestart": "npm run build && func extensions install",
+    "start": "npm-run-all --parallel func:start watch && node -r dotenv/config",
+    "test": "jest",
+    "test:watch": "jest --verbose ./tests/unit/.*.test.ts --watch",
+    "test:coverage": "jest --verbose --coverage",
+    "watch": "tsc --w"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx,js}",
+      "!src/**/*.d.ts"
+    ],
+    "coverageDirectory": "<rootDir>/coverage",
+    "coverageReporters": [
+      "lcov",
+      "html",
+      "text"
+    ],
+    "globalSetup": "<rootDir>/global-jest-setup.js",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "preset": "ts-jest",
+    "rootDir": ".",
+    "setupFiles": [
+      "<rootDir>/setup-jest.js"
+    ],
+    "testRegex": "./tests/.*.test.ts$"
+  },
+  "dependencies": {
+    "@azure/service-bus": "7.7.3",
+    "@dvsa/azure-logger": "5.2.0",
+    "@dvsa/egress-filtering": "4.0.2",
+    "ajv": "6.12.4",
+    "jest-junit": "14.0.1",
+    "jest-standard-reporter": "2.0.0",
+    "status-code-enum": "1.0.0"
+  },
+  "devDependencies": {
+    "@azure/functions": "1.2.3",
+    "@babel/core": "7.18.13",
+    "@babel/plugin-proposal-class-properties": "7.18.6",
+    "@babel/plugin-proposal-decorators": "7.18.10",
+    "@babel/preset-env": "7.18.10",
+    "@babel/preset-typescript": "7.18.6",
+    "@dvsa/eslint-config-ts": "3.0.0",
+    "@types/jest": "27.4.1",
+    "dotenv": "16.0.0",
+    "husky": "4.3.8",
+    "jest": "27.5.1",
+    "jest-mock-extended": "2.0.5",
+    "npm-run-all": "4.1.5",
+    "ts-jest": "27.1.4",
+    "ts-node": "10.4.0",
+    "typescript": "4.8.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm run test"
+    }
+  },
+  "engines": {
+    "node": ">=16.x",
+    "npm": ">=9.1"
+  }
+}

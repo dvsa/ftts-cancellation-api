@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureFunctionsJobHost__logging__logLevel__Default": "Trace",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "mock-key",
+    "APP_NAME": "ftts-cancellation-api",
+    "AZURE_TENANT_ID": "",
+    "CRM_AZURE_AD_URI": "",
+    "CRM_AZURE_CLIENT_ID": "",
+    "CRM_AZURE_CLIENT_SECRET": "",
+    "CRM_TOKEN_URL": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "LOG_LEVEL": "debug",
+    "NODE_ENV": "development",
+    "WEBSITE_NODE_DEFAULT_VERSION":"~16"
+  }
+}
